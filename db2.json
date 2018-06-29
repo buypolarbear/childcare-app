@@ -1,0 +1,205 @@
+{
+  "news": [
+    {
+      "id": 1,
+      "title": "Job candidate excels at hiring exercise, reviewers stunned!",
+      "author": "Ms. Reporter",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+
+    {
+      "id": 2,
+      "title": "15 ways code-base quality improved throughout the inter-tubes, #13 will blow your mind!",
+      "author": "Mr. Reporter",
+      "content": "MORE! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ],
+
+  "children": [
+    {
+      "id": 15,
+      "name": "Test Child 1",
+      "avatar": "http://localhost:3000/avatar1.png"
+    },
+
+    {
+      "id": 14,
+      "name": "Test Child 2",
+      "avatar": "http://localhost:3000/avatar2.png"
+    },
+
+    {
+      "id": 13,
+      "name": "Test Child 3",
+      "avatar": "http://localhost:3000/avatar3.png"
+    },
+
+    {
+      "id": 12,
+      "name": "Test Child 4",
+      "avatar": null
+    },
+
+    {
+      "id": 5029,
+      "name": "Test Child 5",
+      "avatar": null
+    }
+  ],
+
+  "sessions": [
+
+    {
+      "id": 102301,
+      "day": "2018-05-31",
+      "start_time": "08:00",
+      "end_time": "12:30",
+      "product_name": "Morning only",
+      "child_id": 15,
+      "group": {
+        "id": 1,
+        "name": "Group 1"
+      },
+
+      "presence": "unknown"
+    },
+
+    {
+      "id": 102302,
+      "day": "2018-05-31",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 14,
+      "group": {
+        "id": 1,
+        "name": "Group 1"
+      },
+      "presence": "unknown"
+    },
+
+
+
+
+
+    {
+      "id": 102405,
+      "day": "2018-06-02",
+      "start_time": "08:00",
+      "end_time": "12:30",
+      "product_name": "Morning only",
+      "child_id": 15,
+      "group": {
+        "id": 1,
+        "name": "Group 1"
+      },
+
+      "presence": "unknown"
+    },
+
+    {
+      "id": 102406,
+      "day": "2018-06-02",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 14,
+      "group": {
+        "id": 1,
+        "name": "Group 1"
+      },
+
+      "presence": "unknown"
+    },
+
+    {
+      "id": 102407,
+      "day": "2018-06-02",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 13,
+      "group": {
+        "id": 2,
+        "name": "Group 2"
+      },
+
+      "presence": "present"
+    },
+
+    {
+      "id": 102408,
+      "day": "2018-06-02",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 12,
+
+      "group": {
+        "id": 3,
+        "name": "Group 4"
+      },
+
+      "presence": "unknown"
+    },
+
+    {
+      "id": 102409,
+      "day": "2018-06-02",
+      "start_time": "14:15",
+      "end_time": "18:30",
+      "product_name": "Afternoon",
+      "child_id": 5029,
+      "group": {
+        "id": 2,
+        "name": "Group 2"
+      },
+
+      "presence": "unknown"
+    },
+    
+    {
+      "id": 102505,
+      "day": "2018-06-03",
+      "start_time": "08:00",
+      "end_time": "12:30",
+      "product_name": "Morning only",
+      "child_id": 15,
+      "group": {
+        "id": 1,
+        "name": "Group 1"
+      },
+      "presence": "unknown"
+    },
+
+    {
+      "id": 102507,
+      "day": "2018-06-03",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 13,
+      "group": {
+        "id": 2,
+        "name": "Group 2"
+      },
+
+      "presence": "present"
+    },
+
+    {
+      "id": 102508,
+      "day": "2018-06-03",
+      "start_time": "08:00",
+      "end_time": "18:30",
+      "product_name": "Whole day",
+      "child_id": 12,
+      "group": {
+        "id": 3,
+        "name": "Group 4"
+      },
+      "presence": "unknown"
+    }
+
+  ]
+}
