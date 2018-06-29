@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
+import Button from 'material-ui/Button'
+import TextField from 'material-ui/TextField'
+import moment from 'moment'
 import '../css/SessionsOverview.css'
 //import List from './NewsItemList';
 
@@ -16,11 +19,14 @@ class SessionsOverview extends Component {
         }
     }
 
+
+
     renderSession=(eachsession)=>{
+
         console.log("eacchsesion", eachsession)
         return(
             <Card key={eachsession.id} className="each-session">
-             <CardContent>
+             <CardContent >
                  <Typography>
                      Name:{eachsession.child.name}
                      
@@ -54,8 +60,34 @@ class SessionsOverview extends Component {
         return (
             <div>
                 <h1 className="sessions-overview">Sessions Overview</h1>
+                <TextField
+                 id="date"
+                 label="Choose a date"
+                 type="date"
+                 defaultValue= "2018-06-02"/>
+
                 <Paper className="outer-paper">
                 {sessionItems?sessionItems.map(eachsession=>this.renderSession(eachsession)): "Loading..."}
+
+                <br/>
+                <Button
+              variant="raised"
+              color="secondary"
+              type="submit"
+              
+              className="previous-day">
+              Previous Day
+            </Button>
+
+            <Button
+              variant="raised"
+              color="secondary"
+              type="submit"
+              
+              className="next-day">
+              Next Day
+            </Button>
+
                 </Paper>
 
             </div>
