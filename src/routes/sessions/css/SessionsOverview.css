@@ -7,3 +7,15 @@
     text-align: center;
     align-content: center;
 }
+
+.each-session{
+    display: inline-block;
+    max-width: 400px;
+    padding: 50px;
+    margin:30px;
+}
+
+.next-day{
+    margin-right: 10px; 
+    margin-left:100px;
+}
