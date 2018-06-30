@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import NewsOverviewContainer from './routes/news/containers/NewsOverviewContainer';
 import Home from './routes/home/components/overview';
 
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NewsItemContainer from "./routes/news/containers/NewsItemContainer";
 
 import SessionsOverviewContainer from './routes/sessions/containers/SessionsOverviewContainer'

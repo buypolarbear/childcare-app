@@ -1,9 +1,10 @@
 export const GET_SESSIONS = 'GET_SESSIONS';
 export const SESSIONS_LOADED  = 'SESSIONS_LOADED';
 
-export function getSessions() {
+export function getSessions(day) {
     return {
-        type: GET_SESSIONS
+        type: GET_SESSIONS,
+        payload:day
     }
 }
 
