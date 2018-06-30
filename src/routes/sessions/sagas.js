@@ -1,16 +1,16 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
 import {GET_SESSIONS, sessionsLoaded} from "./actions/GetSessions";
 
-function fetchSessionsFromServer()
+function fetchSessionsFromServer(day)
 {
-    return fetch('http://localhost:3001/sessions')
+    return fetch(`http://localhost:3001/sessions?day=${day}`)
         .then( (response) => response.json())
         .then ( (response) => response )
 }
 
-function* getSessions() {
-    const items = yield call(fetchSessionsFromServer);
-
+function* getSessions(day) {
+    const items = yield call(fetchSessionsFromServer,day.payload);
+    console.log("items", items)
     yield put(sessionsLoaded(items));
 }
 
