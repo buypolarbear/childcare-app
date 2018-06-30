@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import SessionsOverview from '../components/SessionsOverview';
 import {getSessions} from '../actions/GetSessions';
+import {updatePresence} from '../actions/UpdatePresence'
 import {selectSessionsItems} from "../selectors";
 
 
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getSessions
+    getSessions,
+    updatePresence
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionsOverview);

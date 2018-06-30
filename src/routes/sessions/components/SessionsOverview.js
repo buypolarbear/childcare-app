@@ -34,15 +34,25 @@ class SessionsOverview extends Component {
       
    }
 
+   handlePresentStatus=(event)=>{
+     this.props.updatePresence(event.currentTarget.value)
+   }
+
    getPrevDay=()=>{
 
-       let yesterday = this.state.selecteddate; 
-       console.log("yesterday",yesterday-1)
-       
-       let date = new Date(yesterday);
-        var date_str = moment(date).format("DD.MM.YYYY");
+        let dateTime = new Date(this.state.selecteddate);
+        dateTime = moment(dateTime).add(-1, 'days').format("YYYY-MM-DD");
+        this.setState({selecteddate:dateTime})
+        this.props.getSessions(dateTime);
         
-       console.log(yesterday)
+   }
+
+   getNextDay=()=>{
+
+      let dateTime = new Date(this.state.selecteddate);
+      dateTime = moment(dateTime).add(+1, 'days').format("YYYY-MM-DD");
+      this.setState({selecteddate:dateTime})
+      this.props.getSessions(dateTime);
    }
    
    handleGroupChange=(event)=>{
@@ -73,6 +83,16 @@ class SessionsOverview extends Component {
                      <Typography>
                     Present Status: {eachsession.presence}
                      </Typography>
+                     <Button
+                     variant="raised"
+                    color="secondary"
+                    type="submit"
+                    value={eachsession.presence}
+                    onClick={this.handlePresentStatus}
+                    className="present-status">
+              Update Present Status
+            </Button>
+
                  </CardContent>
             </Card>
 
@@ -131,7 +151,7 @@ class SessionsOverview extends Component {
               variant="raised"
               color="secondary"
               type="submit"
-              
+              onClick={this.getNextDay}
               className="next-day">
               Next Day
             </Button>
