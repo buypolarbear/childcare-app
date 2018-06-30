@@ -5,13 +5,15 @@ import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
+import moment from 'moment'
 import '../css/SessionsOverview.css'
 
 class SessionsOverview extends Component {
 
     constructor(){
         super()
-        this.state={selecteddate:"2018-06-02"}
+        this.state={selecteddate:"2018-06-02",
+      selectedgroup:"All"}
         
     }
 
@@ -19,6 +21,7 @@ class SessionsOverview extends Component {
         const {sessionsItems, getSessions} = this.props;
 
         if (!sessionsItems) {
+            console.log("isnide comp did mount")
             getSessions(this.state.selecteddate);
         }
 
@@ -29,6 +32,31 @@ class SessionsOverview extends Component {
        this.setState({selecteddate:event.target.value})
        this.props.getSessions(event.target.value);
       
+   }
+
+   handlePresentStatus=(event)=>{
+     this.props.updatePresence(event.currentTarget.value)
+   }
+
+   getPrevDay=()=>{
+
+        let dateTime = new Date(this.state.selecteddate);
+        dateTime = moment(dateTime).add(-1, 'days').format("YYYY-MM-DD");
+        this.setState({selecteddate:dateTime})
+        this.props.getSessions(dateTime);
+        
+   }
+
+   getNextDay=()=>{
+
+      let dateTime = new Date(this.state.selecteddate);
+      dateTime = moment(dateTime).add(+1, 'days').format("YYYY-MM-DD");
+      this.setState({selecteddate:dateTime})
+      this.props.getSessions(dateTime);
+   }
+   
+   handleGroupChange=(event)=>{
+      this.setState({selectedgroup:event.target.value})
    }
 
     renderSession=(eachsession)=>{
@@ -55,6 +83,16 @@ class SessionsOverview extends Component {
                      <Typography>
                     Present Status: {eachsession.presence}
                      </Typography>
+                     <Button
+                     variant="raised"
+                    color="secondary"
+                    type="submit"
+                    value={eachsession.presence}
+                    onClick={this.handlePresentStatus}
+                    className="present-status">
+              Update Present Status
+            </Button>
+
                  </CardContent>
             </Card>
 
@@ -66,6 +104,10 @@ class SessionsOverview extends Component {
         
         const {sessionItems} = this.props;
         console.log("state",this.state.selecteddate)
+        let filteredSessions=[]
+        if(this.state.selectedgroup!=="All")
+            filteredSessions=sessionItems.filter(eachsession=>{return(eachsession.group.name===this.state.selectedgroup)})
+                  
         
         return (
             <div>
@@ -75,17 +117,33 @@ class SessionsOverview extends Component {
                  label="Choose a date"
                  type="date"
                  defaultValue= "2018-06-02"
+                 value={this.state.selecteddate}
                  onChange={this.handleChange}/>
 
-                <Paper className="outer-paper">
-                {sessionItems?sessionItems.map(eachsession=>this.renderSession(eachsession)): "Loading..."}
+                 <p>Select group:</p>
+                         <select required
+                          className="filter-group"  name="type" id="type"
+                          onChange={ this.handleGroupChange }>
+                          <option value="All">All</option>
+                          <option value="Group 1">Group 1</option>
+                          <option value="Group 2">Group 2</option>
+                          <option value="Group 3">Group 3</option>
+                          <option value="Group 4">Group 4</option>
+                         
+                </select>
 
+                <Paper className="outer-paper">
+
+                 {(sessionItems && (this.state.selectedgroup==="All"))?sessionItems.map(eachsession=>this.renderSession(eachsession)): "Loading..."}
+                
+                 {(this.state.selectedgroup!=="All")&&(filteredSessions.map(eachsession=>this.renderSession(eachsession)))}
+             
                 <br/>
                 <Button
               variant="raised"
               color="secondary"
               type="submit"
-              
+              onClick={this.getPrevDay}
               className="previous-day">
               Previous Day
             </Button>
@@ -94,7 +152,7 @@ class SessionsOverview extends Component {
               variant="raised"
               color="secondary"
               type="submit"
-              
+              onClick={this.getNextDay}
               className="next-day">
               Next Day
             </Button>
