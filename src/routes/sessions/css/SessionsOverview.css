@@ -1,6 +1,8 @@
 .child-image{
     max-width: 150px;
     max-height: 150px;
+    min-width: 150px;
+    min-height: 150px;
 }
 
 .sessions-overview{
@@ -13,9 +15,26 @@
     max-width: 400px;
     padding: 50px;
     margin:30px;
+    text-align: center;
 }
 
 .next-day{
     margin-right: 10px; 
     margin-left:100px;
+}
+
+.filter-group{
+    
+    color:  #0a0508;
+    height: 25px;
+    background: white;
+    font-size: 16px; 
+    width:130px;
+    outline: none;
+    margin-left:1500px;
+    
+} 
+
+.outer-paper{
+    text-align: center;
 }
