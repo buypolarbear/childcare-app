@@ -117,6 +117,7 @@ class SessionsOverview extends Component {
                  label="Choose a date"
                  type="date"
                  defaultValue= "2018-06-02"
+                 value={this.state.selecteddate}
                  onChange={this.handleChange}/>
 
                  <p>Select group:</p>
