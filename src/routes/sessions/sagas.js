@@ -10,7 +10,6 @@ function fetchSessionsFromServer(day)
 
 function* getSessions(day) {
     const items = yield call(fetchSessionsFromServer,day.payload);
-    console.log("items", items)
     yield put(sessionsLoaded(items));
 }
 

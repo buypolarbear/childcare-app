@@ -5,7 +5,7 @@ import {getSessions} from '../actions/GetSessions';
 import {selectSessionsItems} from "../selectors";
 
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     sessionItems: selectSessionsItems(state)
 });
 
