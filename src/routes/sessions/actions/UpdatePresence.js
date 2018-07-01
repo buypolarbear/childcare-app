@@ -1,9 +1,9 @@
 export const UPDATE_PRESENCE  = 'UPDATE_PRESENCE';
 
-export function updatePresence(presence) {
+export function updatePresence(selectedindex,presence) {
 
     return {
         type: UPDATE_PRESENCE,
-        payload:presence
+        payload:{selectedindex,presence}
     }
 }

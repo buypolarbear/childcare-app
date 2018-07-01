@@ -35,8 +35,17 @@ class SessionsOverview extends Component {
       
    }
 
-   handlePresentStatus=(event)=>{
-     this.props.updatePresence(event.currentTarget.value)
+   handlePresentStatus=(event,id)=>{
+     console.log("idsf",id)
+
+     let selectedindex=0
+     let selectedsession=this.props.sessionItems.map((eachsession,index)=>{
+         if(eachsession.id===id){
+             selectedindex=index;}
+            
+     })
+      console.log("fdf",event.currentTarget.value)
+     this.props.updatePresence(selectedindex,event.currentTarget.value)
    }
 
    getPrevDay=()=>{
@@ -70,7 +79,7 @@ class SessionsOverview extends Component {
                      
                      </Typography>
                      <Typography>
-                     <img className="child-image" alt="child-img" src={eachsession.child.avatar}/>
+                     <img className="child-image" alt="image not available" src={eachsession.child.avatar}/>
                      </Typography>
                  <Typography>
                     Start TIme: {eachsession.start_time}
@@ -89,7 +98,7 @@ class SessionsOverview extends Component {
                     color="secondary"
                     type="submit"
                     value={eachsession.presence}
-                    onClick={this.handlePresentStatus}
+                    onClick={(event)=>this.handlePresentStatus(event,eachsession.id)}
                     className="present-status">
               Update Present Status
             </Button>
@@ -111,7 +120,14 @@ class SessionsOverview extends Component {
             filteredSessions=sessionItems.filter(eachsession=>{return(eachsession.group.name===this.state.selectedgroup)})
         
         else if((this.state.selectedgroup==="All")&&(sessionItems))
-         filteredSessions=sessionItems         
+         filteredSessions=sessionItems  
+
+        
+         
+        {/*if((filteredSessions)&&(filteredSessions.length==0))
+        {  
+            alert('No sessions on this day')
+        }*/}
         
         return (
             <div>

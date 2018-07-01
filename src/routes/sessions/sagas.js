@@ -7,7 +7,7 @@ function fetchSessionsFromServer(day)
         .then( (response) => response.json())
         .then ( (response) => response )
         .catch((err)=>
-            alert("Something went wrong, please try again ")
+            console.log("Something went wrong, please try again ")
         )
 }
 
