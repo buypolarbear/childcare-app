@@ -21,7 +21,7 @@ class SessionsOverview extends Component {
         const {sessionsItems, getSessions} = this.props;
 
         if (!sessionsItems) {
-            console.log("isnide comp did mount")
+            
             getSessions(this.state.selecteddate);
         }
 
@@ -103,25 +103,46 @@ class SessionsOverview extends Component {
 
         
         const {sessionItems} = this.props;
-        console.log("state",this.state.selecteddate)
-        let filteredSessions=[]
-        if(this.state.selectedgroup!=="All")
+        console.log("se",sessionItems)
+
+        let {filteredSessions}=this.props
+        if((this.state.selectedgroup!=="All")&&(sessionItems))
             filteredSessions=sessionItems.filter(eachsession=>{return(eachsession.group.name===this.state.selectedgroup)})
-                  
+        
+        else if((this.state.selectedgroup==="All")&&(sessionItems))
+         filteredSessions=sessionItems         
         
         return (
             <div>
                 <h1 className="sessions-overview">Sessions Overview</h1>
+    
+                <Button
+                  variant="raised"
+                  color="secondary"
+                  type="submit"
+                  onClick={this.getPrevDay}
+                  className="previous-day">
+                  Previous Day
+                </Button>
+    
                 <TextField
-                 id="date"
-                 label="Choose a date"
-                 type="date"
-                
-                 value={this.state.selecteddate}
-                 onChange={this.handleChange}/>
+                  id="date"
+                  label="Choose a date"
+                  type="date"
+                  value={this.state.selecteddate}
+                  onChange={this.handleChange}/>
+    
+                <Button
+                  variant="raised"
+                  color="secondary"
+                  type="submit"
+                  onClick={this.getNextDay}
+                  className="next-day">
+                  Next Day
+                </Button>
 
                  <p className="filter-group">Select group:</p>
-                         <select required
+                 <select required
                           className="filter-group"  name="type" id="type"
                           onChange={ this.handleGroupChange }>
                           <option value="All">All</option>
@@ -134,28 +155,10 @@ class SessionsOverview extends Component {
 
                 <Paper className="outer-paper">
 
-                 {(sessionItems && (this.state.selectedgroup==="All"))?sessionItems.map(eachsession=>this.renderSession(eachsession)): "Loading..."}
+                 {(filteredSessions)?filteredSessions.map(eachsession=>this.renderSession(eachsession)): "Something went wrong, please try again ..."}
                 
-                 {(this.state.selectedgroup!=="All")&&(filteredSessions.map(eachsession=>this.renderSession(eachsession)))}
-             
                 <br/>
-                <Button
-              variant="raised"
-              color="secondary"
-              type="submit"
-              onClick={this.getPrevDay}
-              className="previous-day">
-              Previous Day
-            </Button>
-
-            <Button
-              variant="raised"
-              color="secondary"
-              type="submit"
-              onClick={this.getNextDay}
-              className="next-day">
-              Next Day
-            </Button>
+              
 
                 </Paper>
 
