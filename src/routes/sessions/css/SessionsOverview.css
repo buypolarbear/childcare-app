@@ -19,8 +19,11 @@
 }
 
 .next-day{
-    margin-right: 10px; 
-    margin-left:100px;
+    
+}
+
+.prev-day{
+    
 }
 
 .filter-group{
@@ -37,4 +40,6 @@
 
 .outer-paper{
     text-align: center;
+    min-width:100px;
+    min-height: 700px;
 }

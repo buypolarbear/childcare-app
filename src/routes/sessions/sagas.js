@@ -6,6 +6,9 @@ function fetchSessionsFromServer(day)
     return fetch(`http://localhost:3001/sessions?day=${day}`)
         .then( (response) => response.json())
         .then ( (response) => response )
+        .catch((err)=>
+            alert("Something went wrong, please try again ")
+        )
 }
 
 function* getSessions(day) {

@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
                 case 'picked up':return{
                     ...state,presence:action.payload
                 }
+                default:return state
             }
             
 
