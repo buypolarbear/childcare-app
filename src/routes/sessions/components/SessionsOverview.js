@@ -4,6 +4,7 @@ import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
+import ErrorComponent from './ErrorComponent'
 import TextField from 'material-ui/TextField'
 import moment from 'moment'
 import '../css/SessionsOverview.css'
@@ -155,7 +156,7 @@ class SessionsOverview extends Component {
 
                 <Paper className="outer-paper">
 
-                 {(filteredSessions)?filteredSessions.map(eachsession=>this.renderSession(eachsession)): "Something went wrong, please try again ..."}
+                 {(filteredSessions)?filteredSessions.map(eachsession=>this.renderSession(eachsession)): <ErrorComponent/>}
                 
                 <br/>
               

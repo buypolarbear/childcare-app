@@ -40,4 +40,6 @@
 
 .outer-paper{
     text-align: center;
+    min-width:100px;
+    min-height: 700px;
 }
