@@ -1,5 +1,6 @@
 import {SESSIONS_LOADED} from "../actions/GetSessions";
 import {UPDATE_PRESENCE} from '../actions/UpdatePresence'
+import update from 'immutability-helper';
 
 const initialState = {};
 
@@ -12,19 +13,39 @@ export default (state = initialState, action) => {
             };
         
         case UPDATE_PRESENCE:
-            switch(action.payload){
+            switch(action.payload.presence){
+                
                 case 'unknown':
-                console.log("state",state.items[0].presence)
-                return {
-                    ...state,
-                    presence:action.payload
+                {
+                return update(state, { 
+                    items: { 
+                      [action.payload.selectedindex]: {
+                        presence: {$set: 'present'}
+                      }
+                    }
+                  });
+            }
+                
+                case 'present':
+                {
+                return update(state, { 
+                    items: { 
+                      [action.payload.selectedindex]: {
+                        presence: {$set: 'picked up'}
+                      }
+                    }
+                  });
                 }
-                case 'present':return{
-                    ...state,presence:action.payload
-                }
-                case 'picked up':return{
-                    ...state,presence:action.payload
-                }
+                case 'picked up':
+                {
+                    return update(state, { 
+                        items: { 
+                          [action.payload.selectedindex]: {
+                            presence: {$set: 'unknown'}
+                          }
+                        }
+                      });
+                    }
                 default:return state
             }
             
