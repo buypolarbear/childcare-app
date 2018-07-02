@@ -24,7 +24,7 @@ export default (state = initialState, {type, payload}) => {
                 {
                  return update(state, { 
                     items: { 
-                      [payload.selectedindex]: {
+                      [payload.selectedIndex]: {
                         presence: {$set: 'present'}
                       }
                     }
@@ -35,7 +35,7 @@ export default (state = initialState, {type, payload}) => {
                 {
                 return update(state, { 
                     items: { 
-                      [payload.selectedindex]: {
+                      [payload.selectedIndex]: {
                         presence: {$set: 'picked up'}
                       }
                     }
@@ -46,7 +46,7 @@ export default (state = initialState, {type, payload}) => {
                 {
                     return update(state, { 
                         items: { 
-                          [payload.selectedindex]: {
+                          [payload.selectedIndex]: {
                             presence: {$set: 'unknown'}
                           }
                         }
