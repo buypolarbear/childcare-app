@@ -1,4 +1,4 @@
-# childcare-assignment
+# Childcare Monitoring
 
 This project aims to create an overview app for kids that allows users to see number of child occurances in childcare per day.
 
