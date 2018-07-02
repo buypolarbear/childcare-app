@@ -18,14 +18,32 @@ import {withStyles} from 'material-ui/styles';
 import '../css/SessionsOverview.css'
 
 const styles = theme => ({
-    namestyle: {
+    nameStyle: {
       fontSize:'25px'
     },
 
-    detailsstyle:{
+    detailsStyle:{
       fontSize:'16px',
       margin:'10px',
       fontFamily:'Sans Serif'
+    },
+
+    nextDayButton:{
+       marginLeft:'1100px'
+    },
+
+    prevDayButton:{
+        marginLeft:'800px'
+        
+    },
+
+    outerPaper:{
+        backgroundColor:"#ffe9ec",
+        textAlign: "center",
+        minWidth:'100px',
+        minHeight:'700px',
+        maxWidth:'2000px',
+        margin:'20px'
     }
 })
 
@@ -118,7 +136,7 @@ class SessionsOverview extends Component {
                  <Card key={eachSession.id} className="each-session-card">
                   <CardContent className="session-content">
      
-                         <Typography className={classes.namestyle}>
+                         <Typography className={classes.nameStyle}>
                           {eachSession.child.name}
                           </Typography>
      
@@ -126,19 +144,19 @@ class SessionsOverview extends Component {
                           <img className="child-image" alt="child" src={eachSession.child.avatar?eachSession.child.avatar:dummyImage}/>
                           </Typography>
      
-                         <Typography className={classes.detailsstyle}>
+                         <Typography className={classes.detailsStyle}>
                          Start TIme: {eachSession.start_time}
                          </Typography>
      
-                          <Typography className={classes.detailsstyle}>
+                          <Typography className={classes.detailsStyle}>
                           End TIme: {eachSession.end_time}
                           </Typography>
      
-                          <Typography className={classes.detailsstyle}>
+                          <Typography className={classes.detailsStyle}>
                          Group Name: {eachSession.group.name}
                           </Typography>
      
-                          <Typography className={classes.detailsstyle}>
+                          <Typography className={classes.detailsStyle}>
                          Presence Status: {eachSession.presence}
                           </Typography>
      
@@ -162,7 +180,7 @@ class SessionsOverview extends Component {
     render() {
 
         
-        const {sessionItems} = this.props;
+        const {sessionItems,classes} = this.props;
   
         let {filteredSessions}=this.props
 
@@ -182,7 +200,7 @@ class SessionsOverview extends Component {
                        color="secondary"
                        type="submit"
                        onClick={this.getPrevDay}
-                       className="previous-day">
+                       className={classes.prevDayButton}>
                        Previous Day
                      </Button>
          
@@ -191,6 +209,7 @@ class SessionsOverview extends Component {
                        label="Choose a date"
                        type="date"
                        value={this.state.selectedDate}
+                       className={classes.button}
                        onChange={this.handleDateChange}/>
          
                      <Button
@@ -198,7 +217,7 @@ class SessionsOverview extends Component {
                        color="secondary"
                        type="submit"
                        onClick={this.getNextDay}
-                       className="next-day">
+                       className={classes.nextDayButton}>
                        Next Day
                      </Button>
      
@@ -217,7 +236,7 @@ class SessionsOverview extends Component {
                       
                       {/* checking if filteredsessions has items in it, if no items , then call NoResultsComponent , if due to 
                       server error filteredsessions is undefined, then call ErrorComponent */}
-                     <Paper className="outer-paper">
+                     <Paper className={classes.outerPaper}>
      
                       {(filteredSessions)?((filteredSessions.length!==0)?filteredSessions.map(eachSession=>this.renderSession(eachSession)):<NoResultsComponent/>): <ErrorComponent/>}
                      

@@ -17,7 +17,7 @@
 
 .each-session-card{
     display: inline-block;
-    max-width: 400px;
+    max-width: 250px;
     padding: 50px;
     margin:30px;
     text-align: center;
@@ -40,5 +40,7 @@
     text-align: center;
     min-width:100px;
     min-height: 700px;
+    max-width: 2000px;
+    margin:20px;
 }
 
