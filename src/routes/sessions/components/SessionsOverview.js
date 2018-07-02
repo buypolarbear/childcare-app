@@ -15,7 +15,9 @@ import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import {withStyles} from 'material-ui/styles';
+import Select from 'material-ui/Select'
 import '../css/SessionsOverview.css'
+import { MenuItem } from 'material-ui';
 
 const styles = theme => ({
     nameStyle: {
@@ -28,13 +30,13 @@ const styles = theme => ({
       fontFamily:'Sans Serif'
     },
 
-    nextDayButton:{
-       marginLeft:'1100px'
+    chooseDateStyle:{
+      marginLeft:'800px'
     },
 
     prevDayButton:{
-        marginLeft:'800px'
-        
+        marginLeft:'20px',
+        marginRight:'20px'
     },
 
     outerPaper:{
@@ -194,7 +196,15 @@ class SessionsOverview extends Component {
         return (
                  <div>
                      <h1 className="sessions-overview">Sessions Overview</h1>
-         
+
+                     <TextField
+                       id="date"
+                       label="Choose a date"
+                       type="date"
+                       value={this.state.selectedDate}
+                       className={classes.chooseDateStyle}
+                       onChange={this.handleDateChange}/>
+
                      <Button
                        variant="raised"
                        color="secondary"
@@ -204,35 +214,28 @@ class SessionsOverview extends Component {
                        Previous Day
                      </Button>
          
-                     <TextField
-                       id="date"
-                       label="Choose a date"
-                       type="date"
-                       value={this.state.selectedDate}
-                       className={classes.button}
-                       onChange={this.handleDateChange}/>
-         
                      <Button
                        variant="raised"
                        color="secondary"
                        type="submit"
                        onClick={this.getNextDay}
-                       className={classes.nextDayButton}>
+                       >
                        Next Day
                      </Button>
      
-                      <p className="filter-group">Select group:</p>
-                      <select required
+                      <div className="filter-group">Select group</div>
+                      <Select required
                                className="filter-group"  name="type" id="type"
+                               value={this.state.selectedGroup}
                                onChange={ this.handleGroupChange }>
-     
-                               <option value="All">All</option>
-                               <option value="Group 1">Group 1</option>
-                               <option value="Group 2">Group 2</option>
-                               <option value="Group 3">Group 3</option>
-                               <option value="Group 4">Group 4</option>
+
+                               <MenuItem value="All">All</MenuItem>
+                               <MenuItem value="Group 1">Group 1</MenuItem>
+                               <MenuItem value="Group 2">Group 2</MenuItem>
+                               <MenuItem value="Group 3">Group 3</MenuItem>
+                               <MenuItem value="Group 4">Group 4</MenuItem>
                               
-                     </select>
+                     </Select>
                       
                       {/* checking if filteredsessions has items in it, if no items , then call NoResultsComponent , if due to 
                       server error filteredsessions is undefined, then call ErrorComponent */}
