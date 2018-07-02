@@ -14,9 +14,41 @@ import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
+import {withStyles} from 'material-ui/styles';
 import '../css/SessionsOverview.css'
 
-export default class SessionsOverview extends Component {
+const styles = theme => ({
+    nameStyle: {
+      fontSize:'25px'
+    },
+
+    detailsStyle:{
+      fontSize:'16px',
+      margin:'10px',
+      fontFamily:'Sans Serif'
+    },
+
+    nextDayButton:{
+       marginLeft:'1100px'
+    },
+
+    prevDayButton:{
+        marginLeft:'800px'
+        
+    },
+
+    outerPaper:{
+        backgroundColor:"#ffe9ec",
+        textAlign: "center",
+        minWidth:'100px',
+        minHeight:'700px',
+        maxWidth:'2000px',
+        margin:'20px'
+    }
+})
+
+
+class SessionsOverview extends Component {
 
      //setting initial values to component local state
      state={
@@ -96,33 +128,35 @@ export default class SessionsOverview extends Component {
 
     //function to render each session, takes eachsession of a day as input 
     renderSession=(eachSession)=>{
+         
+        const {classes}=this.props;
 
         return(
 
                  <Card key={eachSession.id} className="each-session-card">
                   <CardContent className="session-content">
      
-                         <Typography>
-                          Name:{eachSession.child.name}
+                         <Typography className={classes.nameStyle}>
+                          {eachSession.child.name}
                           </Typography>
      
                           <Typography>
                           <img className="child-image" alt="child" src={eachSession.child.avatar?eachSession.child.avatar:dummyImage}/>
                           </Typography>
      
-                         <Typography>
+                         <Typography className={classes.detailsStyle}>
                          Start TIme: {eachSession.start_time}
                          </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsStyle}>
                           End TIme: {eachSession.end_time}
                           </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsStyle}>
                          Group Name: {eachSession.group.name}
                           </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsStyle}>
                          Presence Status: {eachSession.presence}
                           </Typography>
      
@@ -146,7 +180,7 @@ export default class SessionsOverview extends Component {
     render() {
 
         
-        const {sessionItems} = this.props;
+        const {sessionItems,classes} = this.props;
   
         let {filteredSessions}=this.props
 
@@ -166,7 +200,7 @@ export default class SessionsOverview extends Component {
                        color="secondary"
                        type="submit"
                        onClick={this.getPrevDay}
-                       className="previous-day">
+                       className={classes.prevDayButton}>
                        Previous Day
                      </Button>
          
@@ -175,6 +209,7 @@ export default class SessionsOverview extends Component {
                        label="Choose a date"
                        type="date"
                        value={this.state.selectedDate}
+                       className={classes.button}
                        onChange={this.handleDateChange}/>
          
                      <Button
@@ -182,7 +217,7 @@ export default class SessionsOverview extends Component {
                        color="secondary"
                        type="submit"
                        onClick={this.getNextDay}
-                       className="next-day">
+                       className={classes.nextDayButton}>
                        Next Day
                      </Button>
      
@@ -201,7 +236,7 @@ export default class SessionsOverview extends Component {
                       
                       {/* checking if filteredsessions has items in it, if no items , then call NoResultsComponent , if due to 
                       server error filteredsessions is undefined, then call ErrorComponent */}
-                     <Paper className="outer-paper">
+                     <Paper className={classes.outerPaper}>
      
                       {(filteredSessions)?((filteredSessions.length!==0)?filteredSessions.map(eachSession=>this.renderSession(eachSession)):<NoResultsComponent/>): <ErrorComponent/>}
                      
@@ -219,3 +254,4 @@ SessionsOverview.propTypes = {
     updatePresence: PropTypes.func.isRequired
 };
 
+export default withStyles(styles)(SessionsOverview)
