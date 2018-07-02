@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 //Components
 import ErrorComponent from './ErrorComponent'
 import NoResultsComponent from './NoResultsComponent'
+import dummyimage from '../../images/dummyimage.png'
 
 import moment from 'moment'
 
@@ -103,7 +104,7 @@ class SessionsOverview extends Component {
                           </Typography>
      
                           <Typography>
-                          <img className="child-image" alt="image not available" src={eachsession.child.avatar}/>
+                          <img className="child-image" alt="child" src={eachsession.child.avatar?eachsession.child.avatar:dummyimage}/>
                           </Typography>
      
                          <Typography>
