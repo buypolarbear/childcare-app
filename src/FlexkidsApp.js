@@ -4,13 +4,13 @@ import NewsOverviewContainer from './routes/news/containers/NewsOverviewContaine
 import Home from './routes/home/components/overview';
 import NewsItemContainer from "./routes/news/containers/NewsItemContainer";
 import SessionsOverviewContainer from './routes/sessions/containers/SessionsOverviewContainer'
-import { Route, Switch } from 'react-router-dom';
 
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 
   render() {
-    
+
     return (
       <div className="app">
 
