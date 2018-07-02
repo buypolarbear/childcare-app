@@ -1,12 +1,13 @@
 import {SESSIONS_LOADED} from "../actions/GetSessions";
 import {UPDATE_PRESENCE} from '../actions/UpdatePresence'
+
 import update from 'immutability-helper';
 
 const initialState = {};
 
 export default (state = initialState, {type, payload}) => {
 
-    switch (action.type) {
+    switch (type) {
 
         // updates the state with items when SESSIONS_LOADED is fired
         case SESSIONS_LOADED:

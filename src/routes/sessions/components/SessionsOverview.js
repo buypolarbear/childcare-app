@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+//Components
+import ErrorComponent from './ErrorComponent'
+import NoResultsComponent from './NoResultsComponent'
+
+import moment from 'moment'
+
+//Styling using material-ui and css
 import Card, { CardContent} from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
-import ErrorComponent from './ErrorComponent'
-import NoResultsComponent from './NoResultsComponent'
 import TextField from 'material-ui/TextField'
-import moment from 'moment'
 import '../css/SessionsOverview.css'
 
 class SessionsOverview extends Component {
@@ -74,7 +79,7 @@ class SessionsOverview extends Component {
    getNextDay=()=>{
 
       let currentDate = new Date(this.state.selecteddate);
-      currentDate = moment(dateTime).add(+1, 'days').format("YYYY-MM-DD");
+      currentDate = moment(currentDate).add(+1, 'days').format("YYYY-MM-DD");
       this.setState({selecteddate:currentDate})
       this.props.getSessions(currentDate);
    }
@@ -90,7 +95,7 @@ class SessionsOverview extends Component {
 
         return(
 
-                 <Card key={eachsession.id} className="each-session">
+                 <Card key={eachsession.id} className="each-session-card">
                   <CardContent className="session-content">
      
                          <Typography>
