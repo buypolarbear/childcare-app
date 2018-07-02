@@ -14,9 +14,23 @@ import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
+import {withStyles} from 'material-ui/styles';
 import '../css/SessionsOverview.css'
 
-export default class SessionsOverview extends Component {
+const styles = theme => ({
+    namestyle: {
+      fontSize:'25px'
+    },
+
+    detailsstyle:{
+      fontSize:'16px',
+      margin:'10px',
+      fontFamily:'Sans Serif'
+    }
+})
+
+
+class SessionsOverview extends Component {
 
      //setting initial values to component local state
      state={
@@ -96,33 +110,35 @@ export default class SessionsOverview extends Component {
 
     //function to render each session, takes eachsession of a day as input 
     renderSession=(eachSession)=>{
+         
+        const {classes}=this.props;
 
         return(
 
                  <Card key={eachSession.id} className="each-session-card">
                   <CardContent className="session-content">
      
-                         <Typography>
-                          Name:{eachSession.child.name}
+                         <Typography className={classes.namestyle}>
+                          {eachSession.child.name}
                           </Typography>
      
                           <Typography>
                           <img className="child-image" alt="child" src={eachSession.child.avatar?eachSession.child.avatar:dummyImage}/>
                           </Typography>
      
-                         <Typography>
+                         <Typography className={classes.detailsstyle}>
                          Start TIme: {eachSession.start_time}
                          </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsstyle}>
                           End TIme: {eachSession.end_time}
                           </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsstyle}>
                          Group Name: {eachSession.group.name}
                           </Typography>
      
-                          <Typography>
+                          <Typography className={classes.detailsstyle}>
                          Presence Status: {eachSession.presence}
                           </Typography>
      
@@ -219,3 +235,4 @@ SessionsOverview.propTypes = {
     updatePresence: PropTypes.func.isRequired
 };
 
+export default withStyles(styles)(SessionsOverview)
