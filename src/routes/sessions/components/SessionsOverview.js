@@ -5,6 +5,7 @@ import Typography from 'material-ui/Typography'
 import Paper from 'material-ui/Paper'
 import Button from 'material-ui/Button'
 import ErrorComponent from './ErrorComponent'
+import NoResultsComponent from './NoResultsComponent'
 import TextField from 'material-ui/TextField'
 import moment from 'moment'
 import '../css/SessionsOverview.css'
@@ -73,7 +74,7 @@ class SessionsOverview extends Component {
 
         return(
             <Card key={eachsession.id} className="each-session">
-             <CardContent >
+             <CardContent className="session-content">
                  <Typography>
                      Name:{eachsession.child.name}
                      
@@ -172,10 +173,10 @@ class SessionsOverview extends Component {
 
                 <Paper className="outer-paper">
 
-                 {(filteredSessions)?filteredSessions.map(eachsession=>this.renderSession(eachsession)): <ErrorComponent/>}
+                 {(filteredSessions)?((filteredSessions.length!==0)?filteredSessions.map(eachsession=>this.renderSession(eachsession)):<NoResultsComponent/>): <ErrorComponent/>}
                 
                 <br/>
-              
+            
 
                 </Paper>
 
