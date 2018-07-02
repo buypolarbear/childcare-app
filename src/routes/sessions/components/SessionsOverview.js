@@ -50,14 +50,15 @@ class SessionsOverview extends Component {
 
 
    //function to handle changes in present status , gets event and id of the selected session as input arguements, dispatches an action to update the status
-    handlePresentStatus=(event,id)=>{
+    handlePresentStatus=(event,sessionId)=>{
 
      let selectedindex=0
      this.props.sessionItems.map((eachsession,index)=>{
-         if(eachsession.id===id)
+         if(eachsession.id===sessionId)
          {
              selectedindex=index;
          }
+         return selectedindex
       }
     )
      
@@ -68,10 +69,12 @@ class SessionsOverview extends Component {
     //function to get previous day and fetch sessions of that day
    getPrevDay=()=>{
 
-        let dateTime = new Date(this.state.selecteddate);
-        dateTime = moment(dateTime).add(-1, 'days').format("YYYY-MM-DD");
-        this.setState({selecteddate:dateTime})
-        this.props.getSessions(dateTime);
+        let currentSelectedDate = new Date(this.state.selecteddate);
+        currentSelectedDate = moment(currentSelectedDate).add(-1, 'days').format("YYYY-MM-DD");
+        this.setState({
+            selecteddate:currentSelectedDate
+        })
+        this.props.getSessions(currentSelectedDate);
         
    }
 
@@ -79,15 +82,19 @@ class SessionsOverview extends Component {
    //function to get next day and fetch sessions of that day
    getNextDay=()=>{
 
-      let currentDate = new Date(this.state.selecteddate);
-      currentDate = moment(currentDate).add(+1, 'days').format("YYYY-MM-DD");
-      this.setState({selecteddate:currentDate})
-      this.props.getSessions(currentDate);
+      let currentSelectedDate = new Date(this.state.selecteddate);
+      currentSelectedDate = moment(currentSelectedDate).add(+1, 'days').format("YYYY-MM-DD");
+      this.setState({
+          selecteddate:currentSelectedDate
+        })
+      this.props.getSessions(currentSelectedDate);
    }
    
    //function to set the selected group to filter in component local state defined earlier
    handleGroupChange=(event)=>{
-      this.setState({selectedgroup:event.target.value})
+      this.setState({
+          selectedgroup:event.target.value
+        })
    }
     
 
@@ -212,7 +219,8 @@ class SessionsOverview extends Component {
 
 SessionsOverview.propTypes = {
     sessionsItems: PropTypes.array,
-    getSessions: PropTypes.func.isRequired
+    getSessions: PropTypes.func.isRequired,
+    updatePresence: PropTypes.func.isRequired
 };
 
 export default SessionsOverview;

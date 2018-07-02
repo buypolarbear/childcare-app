@@ -2,10 +2,10 @@ export const GET_SESSIONS = 'GET_SESSIONS';
 export const SESSIONS_LOADED  = 'SESSIONS_LOADED';
 
 //action that is dispatched to get sessions for a day
-export function getSessions(day) {
+export function getSessions(date) {
     return {
         type: GET_SESSIONS,
-        payload:day
+        payload:date
     }
 }
 
