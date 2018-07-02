@@ -7,7 +7,7 @@ export default class NoResultsComponent extends Component {
 
     render(){
         return(
-            <div className="error-message">No Sessions available for the given condition</div>
+            <div className="error-message">No Sessions available</div>
         )
     }
 }
