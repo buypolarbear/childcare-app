@@ -5,6 +5,9 @@ export function updatePresence(selectedindex,presence) {
 
     return {
         type: UPDATE_PRESENCE,
-        payload:{selectedindex,presence}
+        payload:{
+            selectedindex,
+            presence
+        }
     }
 }
