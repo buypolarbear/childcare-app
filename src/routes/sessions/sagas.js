@@ -2,9 +2,9 @@ import {call, put, takeLatest} from 'redux-saga/effects'
 import {GET_SESSIONS, sessionsLoaded} from "./actions/GetSessions";
 
 // function to fetch sessions for a day from server
-function fetchSessionsFromServer(selecteddate)
+function fetchSessionsFromServer(selectedDate)
 {
-    return fetch(`http://localhost:3001/sessions?day=${selecteddate}`)
+    return fetch(`http://localhost:3001/sessions?day=${selectedDate}`)
         .then( (response) => response.json())
         .then ( (response) => response )
         .catch((err)=>
@@ -15,8 +15,8 @@ function fetchSessionsFromServer(selecteddate)
 
 function* getSessions(date) {
     
-    const selecteddate=date.payload
-    const items = yield call(fetchSessionsFromServer,selecteddate);
+    const selectedDate=date.payload
+    const items = yield call(fetchSessionsFromServer,selectedDate);
     yield put(sessionsLoaded(items));
 
 }

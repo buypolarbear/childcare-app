@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 //Components
 import ErrorComponent from './ErrorComponent'
 import NoResultsComponent from './NoResultsComponent'
-import dummyimage from '../../images/dummyimage.png'
+import dummyImage from '../../images/dummyimage.png'
 
 import moment from 'moment'
 
@@ -16,18 +16,14 @@ import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
 import '../css/SessionsOverview.css'
 
-class SessionsOverview extends Component {
+export default class SessionsOverview extends Component {
 
-    constructor()
-    {
-        super()
-
-        //setting initial values to component local state
-        this.state={
-                     selecteddate:"2018-06-02",
-                     selectedgroup:"All"
-                    }
-    }
+     //setting initial values to component local state
+     state={
+             selectedDate:"2018-06-02",
+             selectedGroup:"All"
+           }
+    
     
     //getting the props and calling the action creator in case of no sessionitems 
     componentDidMount() {
@@ -35,7 +31,7 @@ class SessionsOverview extends Component {
         const {sessionsItems, getSessions} = this.props;
         if (!sessionsItems) 
         {
-            getSessions(this.state.selecteddate);
+            getSessions(this.state.selectedDate);
         }
 
     }
@@ -44,7 +40,7 @@ class SessionsOverview extends Component {
   // function to handle change made in selected date . It also calls the action creator with the selected date
     handleDateChange=(event)=>{
        
-       this.setState({selecteddate:event.target.value})
+       this.setState({selectedDate:event.target.value})
        this.props.getSessions(event.target.value);
     }
 
@@ -52,27 +48,27 @@ class SessionsOverview extends Component {
    //function to handle changes in present status , gets event and id of the selected session as input arguements, dispatches an action to update the status
     handlePresentStatus=(event,sessionId)=>{
 
-     let selectedindex=0
-     this.props.sessionItems.map((eachsession,index)=>{
-         if(eachsession.id===sessionId)
+     let selectedIndex=0
+     this.props.sessionItems.map((eachSession,index)=>{
+         if(eachSession.id===sessionId)
          {
-             selectedindex=index;
+             selectedIndex=index;
          }
-         return selectedindex
+         return selectedIndex
       }
     )
      
-    this.props.updatePresence(selectedindex,event.currentTarget.value)
+    this.props.updatePresence(selectedIndex,event.currentTarget.value)
    }
 
 
     //function to get previous day and fetch sessions of that day
    getPrevDay=()=>{
 
-        let currentSelectedDate = new Date(this.state.selecteddate);
+        let currentSelectedDate = this.state.selectedDate;
         currentSelectedDate = moment(currentSelectedDate).add(-1, 'days').format("YYYY-MM-DD");
         this.setState({
-            selecteddate:currentSelectedDate
+            selectedDate:currentSelectedDate
         })
         this.props.getSessions(currentSelectedDate);
         
@@ -82,10 +78,10 @@ class SessionsOverview extends Component {
    //function to get next day and fetch sessions of that day
    getNextDay=()=>{
 
-      let currentSelectedDate = new Date(this.state.selecteddate);
+      let currentSelectedDate = new Date(this.state.selectedDate);
       currentSelectedDate = moment(currentSelectedDate).add(+1, 'days').format("YYYY-MM-DD");
       this.setState({
-          selecteddate:currentSelectedDate
+          selectedDate:currentSelectedDate
         })
       this.props.getSessions(currentSelectedDate);
    }
@@ -93,50 +89,50 @@ class SessionsOverview extends Component {
    //function to set the selected group to filter in component local state defined earlier
    handleGroupChange=(event)=>{
       this.setState({
-          selectedgroup:event.target.value
+          selectedGroup:event.target.value
         })
    }
     
 
     //function to render each session, takes eachsession of a day as input 
-    renderSession=(eachsession)=>{
+    renderSession=(eachSession)=>{
 
         return(
 
-                 <Card key={eachsession.id} className="each-session-card">
+                 <Card key={eachSession.id} className="each-session-card">
                   <CardContent className="session-content">
      
                          <Typography>
-                          Name:{eachsession.child.name}
+                          Name:{eachSession.child.name}
                           </Typography>
      
                           <Typography>
-                          <img className="child-image" alt="child" src={eachsession.child.avatar?eachsession.child.avatar:dummyimage}/>
+                          <img className="child-image" alt="child" src={eachSession.child.avatar?eachSession.child.avatar:dummyImage}/>
                           </Typography>
      
                          <Typography>
-                         Start TIme: {eachsession.start_time}
+                         Start TIme: {eachSession.start_time}
                          </Typography>
      
                           <Typography>
-                          End TIme: {eachsession.end_time}
+                          End TIme: {eachSession.end_time}
                           </Typography>
      
                           <Typography>
-                         Group Name: {eachsession.group.name}
+                         Group Name: {eachSession.group.name}
                           </Typography>
      
                           <Typography>
-                         Present Status: {eachsession.presence}
+                         Presence Status: {eachSession.presence}
                           </Typography>
      
                          <Button
                          variant="raised"
                          color="secondary"
                          type="submit"
-                         value={eachsession.presence}
-                         onClick={(event)=>this.handlePresentStatus(event,eachsession.id)}
-                         className="present-status">
+                         value={eachSession.presence}
+                         onClick={(event)=>this.handlePresentStatus(event,eachSession.id)}
+                         className="presence-status">
                          Update Present Status
                          </Button>
      
@@ -155,10 +151,10 @@ class SessionsOverview extends Component {
         let {filteredSessions}=this.props
 
         //filtering the sessions based on group name
-        if((this.state.selectedgroup!=="All")&&(sessionItems))
-            filteredSessions=sessionItems.filter(eachsession=>{return(eachsession.group.name===this.state.selectedgroup)})
+        if((this.state.selectedGroup!=="All")&&(sessionItems))
+            filteredSessions=sessionItems.filter(eachSession=>{return(eachSession.group.name===this.state.selectedGroup)})
         
-        else if((this.state.selectedgroup==="All")&&(sessionItems))
+        else if((this.state.selectedGroup==="All")&&(sessionItems))
             filteredSessions=sessionItems  
         
         return (
@@ -178,7 +174,7 @@ class SessionsOverview extends Component {
                        id="date"
                        label="Choose a date"
                        type="date"
-                       value={this.state.selecteddate}
+                       value={this.state.selectedDate}
                        onChange={this.handleDateChange}/>
          
                      <Button
@@ -207,7 +203,7 @@ class SessionsOverview extends Component {
                       server error filteredsessions is undefined, then call ErrorComponent */}
                      <Paper className="outer-paper">
      
-                      {(filteredSessions)?((filteredSessions.length!==0)?filteredSessions.map(eachsession=>this.renderSession(eachsession)):<NoResultsComponent/>): <ErrorComponent/>}
+                      {(filteredSessions)?((filteredSessions.length!==0)?filteredSessions.map(eachSession=>this.renderSession(eachSession)):<NoResultsComponent/>): <ErrorComponent/>}
                      
                      <br/>
                      </Paper>
@@ -223,4 +219,3 @@ SessionsOverview.propTypes = {
     updatePresence: PropTypes.func.isRequired
 };
 
-export default SessionsOverview;
