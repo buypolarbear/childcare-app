@@ -3,11 +3,16 @@
     max-height: 150px;
     min-width: 150px;
     min-height: 150px;
+    padding:25px;
 }
 
 .sessions-overview{
     text-align: center;
     align-content: center;
+    color:rgb(255, 0, 119);
+    font-family: sans-serif;
+    font-size: 40px;
+    
 }
 
 .each-session{
@@ -16,6 +21,7 @@
     padding: 50px;
     margin:30px;
     text-align: center;
+    font-family: cursive;
 }
 
 .next-day{
@@ -23,7 +29,7 @@
 }
 
 .prev-day{
-    
+    float: right;
 }
 
 .filter-group{
@@ -43,3 +49,4 @@
     min-width:100px;
     min-height: 700px;
 }
+
