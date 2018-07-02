@@ -4,52 +4,57 @@ import update from 'immutability-helper';
 
 const initialState = {};
 
-export default (state = initialState, action) => {
+export default (state = initialState, {type, payload}) => {
+
     switch (action.type) {
+
+        // updates the state with items when SESSIONS_LOADED is fired
         case SESSIONS_LOADED:
             return {
                 ...state,
-                items: action.payload
+                items: payload
             };
         
+        // updates the presence status of session according to the current status
         case UPDATE_PRESENCE:
-            switch(action.payload.presence){
+            switch(payload.presence){
                 
                 case 'unknown':
                 {
-                return update(state, { 
+                 return update(state, { 
                     items: { 
-                      [action.payload.selectedindex]: {
+                      [payload.selectedindex]: {
                         presence: {$set: 'present'}
                       }
                     }
                   });
-            }
+                }
                 
                 case 'present':
                 {
                 return update(state, { 
                     items: { 
-                      [action.payload.selectedindex]: {
+                      [payload.selectedindex]: {
                         presence: {$set: 'picked up'}
                       }
                     }
                   });
                 }
+
                 case 'picked up':
                 {
                     return update(state, { 
                         items: { 
-                          [action.payload.selectedindex]: {
+                          [payload.selectedindex]: {
                             presence: {$set: 'unknown'}
                           }
                         }
                       });
                     }
+
                 default:return state
             }
             
-
         default:
             return state;
     }
