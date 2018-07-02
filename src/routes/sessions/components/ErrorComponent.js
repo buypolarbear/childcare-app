@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/ErrorComponent.css'
 
+//component that gets called in case of error in returning data from server
 export default class ErrorComponent extends Component {
 
     render(){
