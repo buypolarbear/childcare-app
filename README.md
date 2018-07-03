@@ -15,11 +15,15 @@ This project aims to create an overview app for kids that allows users to see nu
 
 **Setup**
 
-Use yarn to install all dependencies 
+1. Clone the repostory
+2. Go to project folder and Use yarn to install all dependencies as shown below
+   ```
+   yarn install
+   ```
 
-Open a terminal and Go to project folder and give yarn run json-server-1
+3.Open a terminal and Go to project folder and give yarn run json-server-1
 
-Open another terminal and give yarn start to open the react application
+4.Open another terminal and give yarn start to open the react application
 
 
 
